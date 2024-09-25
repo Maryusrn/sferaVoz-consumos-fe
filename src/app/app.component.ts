@@ -18,9 +18,9 @@ declare global {
 })
 
 export class AppComponent {
-  constructor(private router: Router) {}
   title = 'sferaVoz';
-
+  
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.router.events.subscribe((event: Event) => {
