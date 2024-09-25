@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet, Event } from '@angular/router';
+
+import { IStaticMethods } from 'preline/preline';
+declare global {
+  interface Window {
+    HSStaticMethods: IStaticMethods;
+  }
+}
+
 
 @Component({
   selector: 'app-root',
@@ -8,6 +16,19 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+
 export class AppComponent {
-  title = 'frontend';
+  constructor(private router: Router) {}
+  title = 'sferaVoz';
+
+
+  ngOnInit() {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        setTimeout(() => {
+          window.HSStaticMethods.autoInit();
+        }, 100);
+      }
+    });
+  }
 }
