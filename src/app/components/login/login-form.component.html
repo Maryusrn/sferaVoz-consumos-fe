@@ -2,15 +2,36 @@
     <!-- Left Panel -->
     <div class="w-full md:px-6 py-12 shadow-lg rounded-lg">
       <img class="h-16 mb-4" src="../../../assets/sferavoz-logo.png" alt="sferavoz-logo">
-      <h1 class="text-3xl font-semibold text-gray-700 mb-6">Bienvenido de vuelta!</h1>
-      <p class="text-gray-500 mb-8">Identificate para acceder a tus consumos de telefonía.</p>
-      <form>
+      <h1 class="text-3xl font-semibold text-gray-700 mb-6 text-center">Bienvenido de vuelta!</h1>
+      <p class="text-gray-500 mb-8 text-center">Identificate para acceder a tus consumos de telefonía.</p>
+
+      @if (errorMessage) {
+      <div class="mb-4">
+        <div class="max-w-xs bg-white border border-gray-200 rounded-xl shadow-sm flex ml-6" role="alert" tabindex="-1" aria-labelledby="hs-toast-stack-toggle-update-label">
+            <div class="flex p-4">
+              <div class="shrink-0 flex justify-center text-center items-center">
+                <svg class="shrink-0 size-4 text-red-500 mt-0.5" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="currentColor"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>cross-circle</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-570.000000, -1089.000000)" fill="currentColor"> 
+                    <path d="M591.657,1109.24 C592.048,1109.63 592.048,1110.27 591.657,1110.66 C591.267,1111.05 590.633,1111.05 590.242,1110.66 L586.006,1106.42 L581.74,1110.69 C581.346,1111.08 580.708,1111.08 580.314,1110.69 C579.921,1110.29 579.921,1109.65 580.314,1109.26 L584.58,1104.99 L580.344,1100.76 C579.953,1100.37 579.953,1099.73 580.344,1099.34 C580.733,1098.95 581.367,1098.95 581.758,1099.34 L585.994,1103.58 L590.292,1099.28 C590.686,1098.89 591.323,1098.89 591.717,1099.28 C592.11,1099.68 592.11,1100.31 591.717,1100.71 L587.42,1105.01 L591.657,1109.24 L591.657,1109.24 Z M586,1089 C577.163,1089 570,1096.16 570,1105 C570,1113.84 577.163,1121 586,1121 C594.837,1121 602,1113.84 602,1105 C602,1096.16 594.837,1089 586,1089 L586,1089 Z" id="cross-circle" sketch:type="MSShapeGroup"> </path> </g> </g> </g>
+                </svg>
+              </div>
+              <div class="ms-3">
+                <p id="hs-toast-stack-toggle-update-label" class="text-sm text-gray-700 dark:text-neutral-400">
+                    {{ errorMessage }}                
+                </p>
+              </div>
+            </div>
+          </div>
+      </div>
+    }
+
+      <form (ngSubmit)="onLogin()">
         <div class="mb-4">
-          <label class="block text-gray-600 mb-2" for="username">Username</label>
+          <label class="block text-gray-600 mb-2" for="username">Usuario</label>
           <input
             type="email"
             id="username"
-            placeholder="admin@themesbrand.com"
+            [(ngModel)]="username"
+            placeholder="pil@proyectos.com"
             class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring focus:ring-pink-200 focus:outline-none"
           />
         </div>
@@ -20,7 +41,8 @@
             <input
               type="password"
               id="password"
-              placeholder="******"
+              [(ngModel)]="password"
+              placeholder="●●●●●●●●"
               class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring focus:ring-pink-200 focus:outline-none"
             />
             <button
@@ -39,15 +61,19 @@
           />
           <label for="remember" class="text-gray-600">Recuerdame</label>
         </div>
+        
         <button
           type="submit"
           class="w-full bg-pink-600 text-white py-2 px-4 rounded-lg hover:bg-pink-700 focus:outline-none focus:ring focus:ring-pink-200"
         >
-          Log In
+          Accede
         </button>
       </form>
       <div class="text-center mt-6 text-gray-500">
-        <p>No tienes una cuenta? <a href="#" class="text-pink-600">Crea una aquí</a></p>
+        <p>No tienes una cuenta? <a href="#" class="text-pink-600 hover:underline-offset-1">Crea una aquí</a></p>
+      </div>
+      <div class="text-sm text-center mt-3 text-gray-200">
+        <p>© 2024 . Proyectos Informáticos Levante</p>
       </div>
     </div>
   </div>
