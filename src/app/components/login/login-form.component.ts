@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: 'login-form.component.html',
   styleUrls: ['login-form.component.scss'],
   standalone: true,
-  imports: [FormsModule, NgIf]
+  imports: [FormsModule],
 })
 
 export class LoginFormComponent  {
