@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet, Event } from '@angular/router';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { IStaticMethods } from 'preline/preline';
 declare global {
@@ -8,11 +9,10 @@ declare global {
   }
 }
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NgApexchartsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
