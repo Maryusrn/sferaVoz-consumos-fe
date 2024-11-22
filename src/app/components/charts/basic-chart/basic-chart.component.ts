@@ -18,26 +18,31 @@ Chart.register(
   standalone: true
 })
 export class BasicChartComponent implements OnInit {
-  public chart: any;
+  public chartDia: Chart | undefined;
+  public chartMes: Chart | undefined;
+  public chartYear: Chart | undefined;
 
   ngOnInit(): void {
-    this.createChart();
+    this.chartDia = this.createChart('dia', ['00', '01', '02', '03', '04', '06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'], [42, 38, 62, 50, 71]);
+    //dependiendo del mes en el que estemos o sea poner dias
+    this.chartMes = this.createChart('mes', ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21',], [120, 140, 190, 150, 100]);
+    this.chartYear = this.createChart('year', ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo','Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'], [500, 700, 800, 650, 900]);
   }
 
-  createChart() {
-    this.chart = new Chart('canvas', {
+  createChart(name: string, labels: string[], data: number[]): Chart {
+    return new Chart(name, {
       type: 'line',
       data: {
-        labels: ['01 Feb', '02 Feb', '03 Feb', '04 Feb', '05 Feb', '06 Feb'],
+        labels: labels,
         datasets: [{
           label: '',
-          data: [42, 38, 62, 50, 71, 55],
+          data: data,
           borderColor: '#b51b72',
           backgroundColor: 'transparent',
           borderWidth: 3,
           tension: 0.4,
           pointRadius: 0,
-          pointHoverRadius: 10, 
+          pointHoverRadius: 6,
           pointBackgroundColor: '#b51b72',
         }]
       },
@@ -49,13 +54,12 @@ export class BasicChartComponent implements OnInit {
           },
           tooltip: {
             enabled: true,
-            intersect: false, 
-            mode: 'nearest', 
+            intersect: false,
+            mode: 'nearest',
             callbacks: {
-              
-              label: function(context) {
+              label: function (context) {
                 let value = context.raw;
-                return `   Valor: ${value}`;
+                return `Valor: ${value}`;
               }
             },
             backgroundColor: '#1E293B',
