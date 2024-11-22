@@ -28,17 +28,17 @@ export class BasicChartComponent implements OnInit {
     this.chart = new Chart('canvas', {
       type: 'line',
       data: {
-        labels: ['Feb', '02 Feb', '03 Feb', '04 Feb', '05 Feb', '06 Feb'],
+        labels: ['01 Feb', '02 Feb', '03 Feb', '04 Feb', '05 Feb', '06 Feb'],
         datasets: [{
           label: '',
           data: [42, 38, 62, 50, 71, 55],
-          borderColor: '#7E3FF2',
+          borderColor: '#b51b72',
           backgroundColor: 'transparent',
           borderWidth: 3,
           tension: 0.4,
           pointRadius: 0,
           pointHoverRadius: 10, 
-          pointBackgroundColor: '#7E3FF2',
+          pointBackgroundColor: '#b51b72',
         }]
       },
       options: {
