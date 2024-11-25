@@ -23,6 +23,7 @@ export class LoginFormComponent  {
   username: string = '';
   password: string = '';
   errorMessage: string = '';
+  passwordVisible: boolean = false;
 
   onLogin() {
     if (
@@ -34,5 +35,9 @@ export class LoginFormComponent  {
     } else {
       this.errorMessage = 'Usuario o contraseña incorrectos';
     }
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 }
