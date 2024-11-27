@@ -15,7 +15,8 @@ Chart.register(
 @Component({
   selector: 'basic-chart',
   templateUrl: './basic-chart.component.html',
-  standalone: true
+  standalone: true,
+  imports: []
 })
 export class BasicChartComponent implements OnInit {
   public chartDia: Chart | undefined;
@@ -28,10 +29,10 @@ export class BasicChartComponent implements OnInit {
     //dependiendo del mes en el que estemos o sea poner dias
     
     this.chartMes = this.createChart('mes', ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21',], 
-      [120, 140, 190, 150, 100]);
+      [120, 140, 190, 150, 100, 242, 123, 56, 78, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200]);
     
       this.chartYear = this.createChart('year', ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo','Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-       [500, 700, 800, 650, 900]);
+       [300, 721, 432, 511, 673]);
   }
 
   createChart(name: string, labels: string[], data: number[]): Chart {
@@ -53,6 +54,10 @@ export class BasicChartComponent implements OnInit {
       },
       options: {
         responsive: true,
+        animation: {
+          duration: 500,
+          easing: 'easeOutQuart',
+        },
         plugins: {
           legend: {
             display: false
@@ -85,14 +90,15 @@ export class BasicChartComponent implements OnInit {
             },
           },
           y: {
+            beginAtZero: true,
             grid: {
               color: '#aab3bf',
               lineWidth: 0.3,
             },
             ticks: {
               color: '#94A3B8',
-              font: { size: 10 },
-              stepSize: 10
+              font: { size: 12 },
+              stepSize: 50
             }
           }
         }
