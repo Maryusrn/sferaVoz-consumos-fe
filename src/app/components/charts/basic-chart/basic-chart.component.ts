@@ -24,14 +24,19 @@ export class BasicChartComponent implements OnInit {
   public chartYear: Chart | undefined;
 
   ngOnInit(): void {
-    this.chartDia = this.createChart('dia', ['00h', '01h', '02h', '03h', '04h', '06h','07h','08h','09h','10h','11h','12h','13h','14h','15h','16h','17h','18h','19h','20h','21h','22h','23h', '24h'], 
-      [42, 38, 62, 50, 71, 60, 31, 80, 90, 91, 16, 74, 130, 0, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240]);
+    const currentMonthDays = this.getDaysInMonth();
+
     //dependiendo del mes en el que estemos o sea poner dias
+    this.chartDia = this.createChart('dia', 
+      ['00h', '01h', '02h', '03h', '05h','04h', '06h','07h','08h','09h','10h','11h','12h','13h','14h','15h','16h','17h','18h','19h','20h','21h','22h','23h', '24h'], 
+      [42, 38, 62, 50, 71, 60, 31, 80, 90, 91, 16, 74, 130, 0, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240]);
     
-    this.chartMes = this.createChart('mes', ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21',], 
+    this.chartMes = this.createChart('mes', 
+      currentMonthDays,
       [120, 140, 190, 150, 100, 242, 123, 56, 78, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200]);
     
-      this.chartYear = this.createChart('year', ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo','Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+      this.chartYear = this.createChart('year', 
+        ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo','Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
        [300, 721, 432, 511, 673]);
   }
 
@@ -104,5 +109,14 @@ export class BasicChartComponent implements OnInit {
         }
       }
     });
+  }
+
+  private getDaysInMonth(): string[] {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth(); // Nota: getMonth() esta 0-indexed
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    return Array.from({ length: daysInMonth }, (_, i) => (i + 1).toString());
   }
 }
