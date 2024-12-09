@@ -31,7 +31,7 @@
             name="username"
             type="email"
             id="username"
-            [(ngModel)]="username"
+            [(ngModel)]="user.email"
             placeholder="pil@proyectos.com"
             class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring focus:ring-pink-200 focus:outline-none"
           />
@@ -43,7 +43,7 @@
               name="password"
               [type]="passwordVisible ? 'text' : 'password'"
               id="password"
-              [(ngModel)]="password"
+              [(ngModel)]="user.password"
               placeholder="●●●●●●●●"
               class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring focus:ring-pink-200 focus:outline-none"
             />

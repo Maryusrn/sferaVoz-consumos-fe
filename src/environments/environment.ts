@@ -1,13 +1,9 @@
-import * as dotenv from 'dotenv';
-
-dotenv.config();
-
 export const develop = {
     production: false,
-    API_URL: process.env['API_URL_DEV']
+    API_URL: 'http://localhost:3000'
   };
 
   export const production = {
     production: true,
-    API_URL: process.env['API_URL_PROD'] 
+    API_URL: ['https://api.sferavoz-consumos.com']
   };
