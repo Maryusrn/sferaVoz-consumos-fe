@@ -14,12 +14,6 @@ export const homeRoutes: Routes = [
             loadComponent: () => 
                 import('../../components/users/user-list/user-list.component').then(m => m.UserListComponent), 
     },
-
-    { 
-        path: 'users-details/:email',
-        loadComponent: () => 
-            import('../../components/users/user-view/user-view.component').then(m => m.UserViewComponent), 
-    },
  
     {
         path: '',
