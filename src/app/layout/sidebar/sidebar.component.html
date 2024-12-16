@@ -15,7 +15,7 @@
     <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
       <ul class="space-y-1.5">
         <li>
-          <a class="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-700 text-sm text-gray-200 rounded-lg hover:bg-gray-600" href="/dashboard">
+          <a class="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-700 text-sm text-gray-200 rounded-lg hover:bg-gray-600" routerLink="/dashboard">
             <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             Dashboard
           </a>
@@ -44,10 +44,10 @@
 
                 <div id="users-accordion-sub-1" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden" role="region" aria-labelledby="users-accordion-sub-1">
                   <ul class="pt-2 ps-2">
-                    <li *ngFor="let user of users">
-                      <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-300 rounded-lg hover:bg-gray-600 focus:outline-none focus:bg-gray-100" 
-                        href="#">
-                        {{ user.name }}
+                    <li>
+                      <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-300 rounded-lg hover:bg-gray-600 focus:outline-none focus:bg-gray-600" 
+                        routerLink="/dashboard/users-list">
+                        Lista de Usuarios
                       </a>
                     </li>
                   </ul>
