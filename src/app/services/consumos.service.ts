@@ -19,5 +19,9 @@ import { Observable } from "rxjs";
     getAllCallsMonth(): Observable<any[]> {
       return this.http.get<any[]>(`${this.apiUrl}/getConsumos/month`);
     }
+
+    getAllCallsYear(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.apiUrl}/getConsumos/year`);
+    }
 }
 

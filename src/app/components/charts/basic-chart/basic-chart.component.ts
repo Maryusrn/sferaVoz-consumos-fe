@@ -29,7 +29,7 @@ export class BasicChartComponent implements OnInit {
   ngOnInit(): void {
     const currentMonthDays = this.getDaysInMonth();
     this.consumosService.getAllCallsHour().subscribe(data => {
-      const consumoshora = this.processDataForHours(data);
+      const consumoshora = this.processData(data);
       this.chartDia = this.createChart('dia', 
         ['00h', '01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h', '21h', '22h', '23h'],
         consumoshora
@@ -37,16 +37,20 @@ export class BasicChartComponent implements OnInit {
     });
 
     this.consumosService.getAllCallsMonth().subscribe(data => {
-      const consumosmes = this.processDataForMonths(data);
+      const consumosmes = this.processData(data);
       this.chartMes = this.createChart('mes', 
         currentMonthDays,
         consumosmes
       );
     });
-        
-      this.chartYear = this.createChart('year', 
+
+    this.consumosService.getAllCallsYear().subscribe(data => {
+      const consumosyear = this.processData(data);
+      this.chartMes = this.createChart('year', 
         ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo','Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-       [300, 721, 432, 511, 673]);
+        consumosyear
+      );
+    });
   }
 
   createChart(name: string, labels: string[], data: number[]): Chart {
@@ -120,11 +124,7 @@ export class BasicChartComponent implements OnInit {
     });
   }
 
-  private processDataForHours(data: number[]): number[] {
-    return data;
-  }
-
-  private processDataForMonths(data: number[]): number[] {
+  private processData(data: number[]): number[] {
     return data;
   }
 
