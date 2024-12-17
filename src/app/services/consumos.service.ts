@@ -12,8 +12,8 @@ import { Observable } from "rxjs";
     private apiUrl = develop.API_URL;
     constructor(private http: HttpClient) { }
 
-    getAllCalls(): Observable<any[]> {
-      return this.http.get<any[]>(`${this.apiUrl}/consumos`);
+    getAllCallsHour(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.apiUrl}/getConsumos/hour`);
     }
 }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, LineController, LineElement, CategoryScale, LinearScale, Title, Tooltip, Legend, PointElement } from 'chart.js';
+import { ConsumosServices } from '../../../services/consumos.service';
 
 Chart.register(
   LineController,
@@ -23,13 +24,17 @@ export class BasicChartComponent implements OnInit {
   public chartMes: Chart | undefined;
   public chartYear: Chart | undefined;
 
+  constructor(private consumosService: ConsumosServices) {}
+
   ngOnInit(): void {
     const currentMonthDays = this.getDaysInMonth();
-
-    //dependiendo del mes en el que estemos o sea poner dias
-    this.chartDia = this.createChart('dia', 
-      ['00h', '01h', '02h', '03h', '05h','04h', '06h','07h','08h','09h','10h','11h','12h','13h','14h','15h','16h','17h','18h','19h','20h','21h','22h','23h'], 
-      [42, 38, 62, 50, 71, 60, 31, 80, 90, 91, 16, 74, 130, 0, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240]);
+    this.consumosService.getAllCallsHour().subscribe(data => {
+      const consumoshora = this.processDataForHours(data);
+      this.chartDia = this.createChart('dia', 
+        ['00h', '01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h', '21h', '22h', '23h'],
+        consumoshora
+      );
+    });
     
     this.chartMes = this.createChart('mes', 
       currentMonthDays,
@@ -103,7 +108,7 @@ export class BasicChartComponent implements OnInit {
             ticks: {
               color: '#94A3B8',
               font: { size: 12 },
-              stepSize: 50
+              stepSize: 10
             }
           }
         }
@@ -111,10 +116,14 @@ export class BasicChartComponent implements OnInit {
     });
   }
 
+  private processDataForHours(data: number[]): number[] {
+    return data;
+  }
+
   private getDaysInMonth(): string[] {
     const now = new Date();
     const year = now.getFullYear();
-    const month = now.getMonth(); // Nota: getMonth() esta 0-indexed
+    const month = now.getMonth();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     return Array.from({ length: daysInMonth }, (_, i) => (i + 1).toString());
