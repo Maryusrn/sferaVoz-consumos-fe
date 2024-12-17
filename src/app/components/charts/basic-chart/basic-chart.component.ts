@@ -35,11 +35,15 @@ export class BasicChartComponent implements OnInit {
         consumoshora
       );
     });
-    
-    this.chartMes = this.createChart('mes', 
-      currentMonthDays,
-      [120, 140, 190, 150, 100, 242, 123, 56, 78, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200]);
-    
+
+    this.consumosService.getAllCallsMonth().subscribe(data => {
+      const consumosmes = this.processDataForMonths(data);
+      this.chartMes = this.createChart('mes', 
+        currentMonthDays,
+        consumosmes
+      );
+    });
+        
       this.chartYear = this.createChart('year', 
         ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo','Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
        [300, 721, 432, 511, 673]);
@@ -117,6 +121,10 @@ export class BasicChartComponent implements OnInit {
   }
 
   private processDataForHours(data: number[]): number[] {
+    return data;
+  }
+
+  private processDataForMonths(data: number[]): number[] {
     return data;
   }
 
