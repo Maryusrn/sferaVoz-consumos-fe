@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -13,20 +14,16 @@ import { UserService } from '../../services/user.service';
   imports: [RouterLink, NgIf, FormsModule, AsyncPipe, NgFor],
 })
 
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
 
-  users: any[] = [];
+  isAdmin: boolean = false;
 
-  constructor(private userService: UserService){}
+  constructor(private authService: AuthService){}
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(
-      (data) => {
-        this.users = data;
-      },
-      (error) => {
-        console.error('Error al obtener usuarios:', error);
-      }
-    );
+    const role = this.authService.getUserRole();
+    if (role == 1) {
+      this.isAdmin = true
+    }
   }
 }

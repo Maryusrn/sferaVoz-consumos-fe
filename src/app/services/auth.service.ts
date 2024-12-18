@@ -64,8 +64,11 @@ import { jwtDecode } from 'jwt-decode';
 
     private decodeToken(token: string): any {
       try {
-        return jwtDecode(token);
+        const decoded = jwtDecode(token);
+        console.log('Decoded Token:', decoded); // Muestra todo el contenido del token
+        return decoded;
       } catch (Error) {
+        console.error('Error decoding token:', Error);
         return null;
       }
     }
@@ -112,5 +115,16 @@ import { jwtDecode } from 'jwt-decode';
         );
       }
       return of(null);
+    }
+
+    getUserRole(): number | null {
+      const token = this.getToken();
+      if (token) {
+        const decoded = this.decodeToken(token);
+        console.log('Decoded Role:', decoded?.rol); // Muestra el rol decodificado
+        return decoded?.rol ?? null;
+      }
+      console.log('No token found, returning null for role');
+      return null;
     }
 }
