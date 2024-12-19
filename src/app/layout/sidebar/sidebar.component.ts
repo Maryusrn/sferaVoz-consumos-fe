@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 
 
@@ -11,14 +10,14 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
   standalone: true,
-  imports: [RouterLink, NgIf, FormsModule, AsyncPipe, NgFor],
+  imports: [RouterLink, NgIf, FormsModule],
 })
 
 export class SidebarComponent implements OnInit {
 
-  isAdmin: boolean = false;
-
   constructor(private authService: AuthService){}
+
+  isAdmin: boolean = false;
 
   ngOnInit(): void {
     const role = this.authService.getUserRole();

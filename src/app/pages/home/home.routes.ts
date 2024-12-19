@@ -1,4 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
+import { UsersGuard } from '../../guards/users.guard';
 
 
 export const homeRoutes: Routes = [
@@ -12,7 +13,9 @@ export const homeRoutes: Routes = [
     { 
         path: 'users-list', 
             loadComponent: () => 
-                import('../../components/users/user-list/user-list.component').then(m => m.UserListComponent), 
+                import('../../components/users/user-list/user-list.component').then(m => m.UserListComponent),
+            canActivate: [UsersGuard],
+            data: { rol: [1] }
     },
  
     {

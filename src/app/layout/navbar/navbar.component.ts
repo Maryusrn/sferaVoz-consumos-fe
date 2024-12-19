@@ -12,7 +12,7 @@ import { User } from '../../models/user.model'
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   standalone: true,
-  imports: [RouterLink, NgIf, FormsModule, AsyncPipe],
+  imports: [RouterLink, NgIf, FormsModule],
 })
 
 export class NavbarComponent implements OnInit{
@@ -26,6 +26,12 @@ export class NavbarComponent implements OnInit{
     this.userEmail$ = this.authService.getUserEmail();
   }
 
+  cerrarsesion(): void {
+    this.authService.logout()
+  }
+
+  isAdmin: boolean = false;
+
   ngOnInit(): void {
     this.userName$.subscribe(userName => {
       console.log('User Name:', userName); // Para verificar si llega el nombre
@@ -33,5 +39,10 @@ export class NavbarComponent implements OnInit{
         this.userInitial = userName.charAt(0).toUpperCase();
       }
     });
+
+    const role = this.authService.getUserRole();
+    if (role == 1) {
+      this.isAdmin = true
+    }
   }
 }

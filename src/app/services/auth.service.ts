@@ -26,11 +26,14 @@ import { jwtDecode } from 'jwt-decode';
     }
 
     isLoggedIn(): boolean {
+    
       const token = localStorage.getItem('token');
-      return !!token && !this.isTokenExpired(token);
+      return !!token
+      
     }
 
     isTokenExpired(token: string): boolean {
+      
       const tokenExpirationDate = this.getTokenExpirationDate(token);
       return !tokenExpirationDate || tokenExpirationDate < new Date();
     }
@@ -57,7 +60,6 @@ import { jwtDecode } from 'jwt-decode';
 
     private getToken(): string | null {
       const token = localStorage.getItem('token');
-      console.log('Token de localstorage:', token);
       return token;
     }
     
@@ -65,10 +67,8 @@ import { jwtDecode } from 'jwt-decode';
     private decodeToken(token: string): any {
       try {
         const decoded = jwtDecode(token);
-        console.log('Decoded Token:', decoded); // Muestra todo el contenido del token
         return decoded;
       } catch (Error) {
-        console.error('Error decoding token:', Error);
         return null;
       }
     }
@@ -77,7 +77,6 @@ import { jwtDecode } from 'jwt-decode';
       const token = this.getToken();
       if (token) {
         const decoded = this.decodeToken(token);
-        console.log('Decoded Token:', decoded);
         return decoded?.id ?? null;
       }
       return null;
@@ -89,7 +88,6 @@ import { jwtDecode } from 'jwt-decode';
         return this.http.get<User>(`${this.apiUrl}/users/${userId}`).pipe(
           map(response => response),
           catchError(error => {
-            console.error('Error fetching user:', error);
             return of(null);
           })
         );
@@ -121,10 +119,8 @@ import { jwtDecode } from 'jwt-decode';
       const token = this.getToken();
       if (token) {
         const decoded = this.decodeToken(token);
-        console.log('Decoded Role:', decoded?.rol); // Muestra el rol decodificado
         return decoded?.rol ?? null;
       }
-      console.log('No token found, returning null for role');
       return null;
     }
 }

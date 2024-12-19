@@ -2,7 +2,7 @@
     <nav class="ml-64 w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
       <div class="flex flex-row items-center gap-5 mt-5 sm:justify-end sm:mt-0 sm:ps-5">
         <a routerLink="/dashboard" class="font-medium text-gray-600 hover:text-pink-500 focus:outline-none focus:text-gray-400 dark:text-gray-300 dark:hover:text-pink-500 dark:focus:text-gray-200">Dashboard</a>
-        <a routerLink="/dashboard/users-list" class="font-medium text-gray-600 hover:text-pink-500 focus:outline-none focus:text-gray-400 dark:text-gray-300 dark:hover:text-pink-500 dark:focus:text-gray-200">Usuarios</a>
+        <a *ngIf="isAdmin" routerLink="/dashboard/users-list" class="font-medium text-gray-600 hover:text-pink-500 focus:outline-none focus:text-gray-400 dark:text-gray-300 dark:hover:text-pink-500 dark:focus:text-gray-200">Usuarios</a>
       </div>
 
       <div class="flex flex-row items-center gap-5 mt-5 sm:justify-end sm:mt-0 sm:ps-5">
@@ -71,7 +71,7 @@
                 <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700" href="#">
                   Bloquear cuenta
                 </a>
-                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700" href="#">
+                <a (click)="cerrarsesion()" class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700" href="#">
                   Cerrar sesión
                 </a>
               </div>
