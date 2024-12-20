@@ -28,7 +28,7 @@ import { jwtDecode } from 'jwt-decode';
     isLoggedIn(): boolean {
     
       const token = localStorage.getItem('token');
-      return !!token
+      return !!token && !this.isTokenExpired(token);
       
     }
 

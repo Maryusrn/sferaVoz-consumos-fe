@@ -68,10 +68,12 @@
         <div class="flex items-center mb-4">
           <input
             type="checkbox"
-            id="remember"
+            id="remember_me"
+            name="remember_me"
+            [(ngModel)]="remember_me"
             class="mr-2 border-gray-300 focus:ring focus:ring-pink-200 focus:outline-none"
           />
-          <label for="remember" class="text-gray-600">Recuerdame</label>
+          <label for="remember-me" class="text-gray-600">Recuerdame</label>
         </div>
         
         <button

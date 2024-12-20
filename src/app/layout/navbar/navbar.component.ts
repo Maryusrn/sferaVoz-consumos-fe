@@ -34,7 +34,6 @@ export class NavbarComponent implements OnInit{
 
   ngOnInit(): void {
     this.userName$.subscribe(userName => {
-      console.log('User Name:', userName); // Para verificar si llega el nombre
       if (userName) {
         this.userInitial = userName.charAt(0).toUpperCase();
       }

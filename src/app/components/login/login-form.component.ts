@@ -11,16 +11,18 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: 'login-form.component.html',
   styleUrls: ['login-form.component.scss'],
   standalone: true,
-  imports: [FormsModule, NgIf, HttpClientModule],
+  imports: [FormsModule, HttpClientModule],
 })
 
 export class LoginFormComponent  {
   user: User = {
     email: '',
     password: '',
+    remember_me: false
 };
-  errorMessage: string = '';
-  passwordVisible: boolean = false;
+  remember_me = false;
+  errorMessage = '';
+  passwordVisible = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
