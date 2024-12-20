@@ -9,7 +9,7 @@ import { UserService } from '../../../services/user.service';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
   standalone: true,
-  imports: [RouterLink, NgIf, FormsModule, AsyncPipe, NgFor],
+  imports: [FormsModule, NgFor],
 })
 export class UserListComponent implements OnInit {
   users: any[] = [];

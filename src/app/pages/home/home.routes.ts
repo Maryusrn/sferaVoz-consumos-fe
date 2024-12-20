@@ -1,5 +1,6 @@
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { UsersGuard } from '../../guards/users.guard';
+import { AuthGuard } from '../../guards/auth.guard';
 
 
 export const homeRoutes: Routes = [
